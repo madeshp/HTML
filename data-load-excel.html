@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Load Status</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/flatpickr.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+        .container {
+            background-color: #f5f5f5;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .status {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 4px;
+            display: none;
+        }
+        .loading {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        #downloadSection {
+            margin-top: 20px;
+            display: none;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Data Load Status Check</h2>
+        
+        <div class="form-group">
+            <label>Actimize Start Load Time:</label>
+            <input type="text" id="actimizeStart" class="datetime-picker">
+        </div>
+        
+        <div class="form-group">
+            <label>Actimize End Load Time:</label>
+            <input type="text" id="actimizeEnd" class="datetime-picker">
+        </div>
+        
+        <div class="form-group">
+            <label>FCDM Start Load Time:</label>
+            <input type="text" id="fcdmStart" class="datetime-picker">
+        </div>
+        
+        <div class="form-group">
+            <label>FCDM End Load Time:</label>
+            <input type="text" id="fcdmEnd" class="datetime-picker">
+        </div>
+        
+        <button onclick="submitForm()">Submit</button>
+        
+        <div id="statusMessage" class="status"></div>
+        
+        <div id="downloadSection">
+            <h3>Results</h3>
+            <div id="tableContainer"></div>
+            <button onclick="downloadExcel()">Download Excel</button>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/flatpickr.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    
+    <script>
+        // Initialize datetime pickers
+        document.querySelectorAll('.datetime-picker').forEach(element => {
+            flatpickr(element, {
+                enableTime: true,
+                dateFormat: "Y-m-d H:i",
+                time_24hr: true
+            });
+        });
+
+        let jsonData = null; // Store the JSON data globally
+
+        function showStatus(message, type) {
+            const statusElement = document.getElementById('statusMessage');
+            statusElement.textContent = message;
+            statusElement.className = `status ${type}`;
+            statusElement.style.display = 'block';
+        }
+
+        function displayTable(data) {
+            const container = document.getElementById('tableContainer');
+            if (!data || !data.length) {
+                container.innerHTML = '<p>No data available</p>';
+                return;
+            }
+
+            const headers = Object.keys(data[0]);
+            let tableHtml = '<table><thead><tr>';
+            
+            // Add headers
+            headers.forEach(header => {
+                tableHtml += `<th>${header}</th>`;
+            });
+            tableHtml += '</tr></thead><tbody>';
+
+            // Add data rows
+            data.forEach(row => {
+                tableHtml += '<tr>';
+                headers.forEach(header => {
+                    tableHtml += `<td>${row[header]}</td>`;
+                });
+                tableHtml += '</tr>';
+            });
+
+            tableHtml += '</tbody></table>';
+            container.innerHTML = tableHtml;
+        }
+
+        function downloadExcel() {
+            if (!jsonData) return;
+
+            const ws = XLSX.utils.json_to_sheet(jsonData);
+            const wb = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(wb, ws, "Data");
+            
+            // Generate Excel file and trigger download
+            XLSX.writeFile(wb, "load_status_report.xlsx");
+        }
+
+        async function checkStatus(requestId) {
+            try {
+                // Replace with your actual status check endpoint
+                const response = await fetch(`/api/check-status/${requestId}`);
+                const result = await response.json();
+                
+                if (result.status === 'completed') {
+                    showStatus('Data load completed successfully!', 'success');
+                    jsonData = result.data;
+                    displayTable(result.data);
+                    document.getElementById('downloadSection').style.display = 'block';
+                } else if (result.status === 'failed') {
+                    showStatus('Data load still in progress', 'error');
+                } else {
+                    showStatus('Loading in Progress...', 'loading');
+                    // Check again after 5 seconds
+                    setTimeout(() => checkStatus(requestId), 5000);
+                }
+            } catch (error) {
+                showStatus(`Error checking status: ${error.message}`, 'error');
+            }
+        }
+
+        async function submitForm() {
+            const data = {
+                actimize: {
+                    startTime: document.getElementById('actimizeStart').value,
+                    endTime: document.getElementById('actimizeEnd').value
+                },
+                fcdm: {
+                    startTime: document.getElementById('fcdmStart').value,
+                    endTime: document.getElementById('fcdmEnd').value
+                }
+            };
+
+            // Validate inputs
+            for (const system of ['actimize', 'fcdm']) {
+                if (!data[system].startTime || !data[system].endTime) {
+                    showStatus(`Please fill in all ${system.toUpperCase()} datetime fields`, 'error');
+                    return;
+                }
+            }
+
+            try {
+                document.getElementById('downloadSection').style.display = 'none';
+                showStatus('Initiating data load...', 'loading');
+                
+                // Replace with your actual API endpoint
+                const response = await fetch('/api/load-data', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                const result = await response.json();
+                
+                if (!response.ok) {
+                    throw new Error(result.message || 'API request failed');
+                }
+
+                // Start checking status
+                checkStatus(result.requestId);
+                
+            } catch (error) {
+                showStatus(`Error: ${error.message}`, 'error');
+            }
+        }
+    </script>
+</body>
+</html>
