@@ -3,56 +3,388 @@
   "status": "completed",
   "data": [
     {
-      "sourceSystem": "Actimize",
-      "loadDate": "2024-11-22",
-      "startTime": "2024-11-22T08:00:00",
-      "endTime": "2024-11-22T09:30:00",
-      "totalRecords": 15000,
-      "successfulRecords": 14985,
-      "failedRecords": 15,
-      "loadDurationMinutes": 90,
-      "status": "Completed",
-      "errorRate": "0.1%",
-      "throughputRecordsPerMinute": 166
+      "KibanaDDF Module": "bt-8668-csv-tgh-hed-act-brhd",
+      "Panthera Extract Name": "ed_account_branch_hold_hist",
+      "Panthera Extract Count": "545,54",
+      "Load Date Time": "2024/11/22",
+      "TigerGraph Count": 15000,
+      "Match Accuracy": "95%"
     },
     {
-      "sourceSystem": "FCDM",
-      "loadDate": "2024-11-22",
-      "startTime": "2024-11-22T08:15:00",
-      "endTime": "2024-11-22T09:45:00",
-      "totalRecords": 18000,
-      "successfulRecords": 17982,
-      "failedRecords": 18,
-      "loadDurationMinutes": 90,
-      "status": "Completed",
-      "errorRate": "0.1%",
-      "throughputRecordsPerMinute": 200
+"KibanaDDF Module": "bt-8668-csv-tgh-hed-act-brhd",
+      "Panthera Extract Name": "ed_account_branch_hold_hist",
+      "Panthera Extract Count": "545,54",
+      "Load Date Time": "2024/11/22",
+      "TigerGraph Count": 15000,
+      "Match Accuracy": "25%"
     },
     {
-      "sourceSystem": "Actimize",
-      "loadDate": "2024-11-21",
-      "startTime": "2024-11-21T08:00:00",
-      "endTime": "2024-11-21T09:15:00",
-      "totalRecords": 14500,
-      "successfulRecords": 14480,
-      "failedRecords": 20,
-      "loadDurationMinutes": 75,
-      "status": "Completed",
-      "errorRate": "0.14%",
-      "throughputRecordsPerMinute": 193
+"KibanaDDF Module": "bt-8668-csv-tgh-hed-act-brhd",
+      "Panthera Extract Name": "ed_account_branch_hold_hist",
+      "Panthera Extract Count": "545,54",
+      "Load Date Time": "2024/11/22",
+      "TigerGraph Count": 16000,
+      "Match Accuracy": "50%"
     },
     {
-      "sourceSystem": "FCDM",
-      "loadDate": "2024-11-21",
-      "startTime": "2024-11-21T08:15:00",
-      "endTime": "2024-11-21T09:30:00",
-      "totalRecords": 17500,
-      "successfulRecords": 17485,
-      "failedRecords": 15,
-      "loadDurationMinutes": 75,
-      "status": "Completed",
-      "errorRate": "0.09%",
-      "throughputRecordsPerMinute": 233
+"KibanaDDF Module": "bt-8668-csv-tgh-hed-act-brhd",
+      "Panthera Extract Name": "ed_account_branch_hold_hist",
+      "Panthera Extract Count": "545,54",
+      "Load Date Time": "2024/11/22",
+      "TigerGraph Count": 14577,
+      "Match Accuracy": "99.99%"
+    },
+	{
+      "KibanaDDF Module": "bt-8668-csv-tgh-hed-act-brhd",
+      "Panthera Extract Name": "ed_account_branch_hold_hist",
+      "Panthera Extract Count": "545,54",
+      "Load Date Time": "2024/11/22",
+      "TigerGraph Count": 15000,
+      "Match Accuracy": "95%"
+    },
+    {
+"KibanaDDF Module": "bt-8668-csv-tgh-hed-act-brhd",
+      "Panthera Extract Name": "ed_account_branch_hold_hist",
+      "Panthera Extract Count": "545,54",
+      "Load Date Time": "2024/11/22",
+      "TigerGraph Count": 15000,
+      "Match Accuracy": "25%"
+    },
+    {
+"KibanaDDF Module": "bt-8668-csv-tgh-hed-act-brhd",
+      "Panthera Extract Name": "ed_account_branch_hold_hist",
+      "Panthera Extract Count": "545,54",
+      "Load Date Time": "2024/11/22",
+      "TigerGraph Count": 16000,
+      "Match Accuracy": "50%"
+    },
+    {
+"KibanaDDF Module": "bt-8668-csv-tgh-hed-act-brhd",
+      "Panthera Extract Name": "ed_account_branch_hold_hist",
+      "Panthera Extract Count": "545,54",
+      "Load Date Time": "2024/11/22",
+      "TigerGraph Count": 14577,
+      "Match Accuracy": "99.99%"
+    },
+	{
+      "KibanaDDF Module": "bt-8668-csv-tgh-hed-act-brhd",
+      "Panthera Extract Name": "ed_account_branch_hold_hist",
+      "Panthera Extract Count": "545,54",
+      "Load Date Time": "2024/11/22",
+      "TigerGraph Count": 15000,
+      "Match Accuracy": "95%"
+    },
+    {
+"KibanaDDF Module": "bt-8668-csv-tgh-hed-act-brhd",
+      "Panthera Extract Name": "ed_account_branch_hold_hist",
+      "Panthera Extract Count": "545,54",
+      "Load Date Time": "2024/11/22",
+      "TigerGraph Count": 15000,
+      "Match Accuracy": "25%"
+    },
+    {
+"KibanaDDF Module": "bt-8668-csv-tgh-hed-act-brhd",
+      "Panthera Extract Name": "ed_account_branch_hold_hist",
+      "Panthera Extract Count": "545,54",
+      "Load Date Time": "2024/11/22",
+      "TigerGraph Count": 16000,
+      "Match Accuracy": "50%"
+    },
+    {
+"KibanaDDF Module": "bt-8668-csv-tgh-hed-act-brhd",
+      "Panthera Extract Name": "ed_account_branch_hold_hist",
+      "Panthera Extract Count": "545,54",
+      "Load Date Time": "2024/11/22",
+      "TigerGraph Count": 14577,
+      "Match Accuracy": "99.99%"
+    },
+	{
+      "KibanaDDF Module": "bt-8668-csv-tgh-hed-act-brhd",
+      "Panthera Extract Name": "ed_account_branch_hold_hist",
+      "Panthera Extract Count": "545,54",
+      "Load Date Time": "2024/11/22",
+      "TigerGraph Count": 15000,
+      "Match Accuracy": "95%"
+    },
+    {
+"KibanaDDF Module": "bt-8668-csv-tgh-hed-act-brhd",
+      "Panthera Extract Name": "ed_account_branch_hold_hist",
+      "Panthera Extract Count": "545,54",
+      "Load Date Time": "2024/11/22",
+      "TigerGraph Count": 15000,
+      "Match Accuracy": "25%"
+    },
+    {
+"KibanaDDF Module": "bt-8668-csv-tgh-hed-act-brhd",
+      "Panthera Extract Name": "ed_account_branch_hold_hist",
+      "Panthera Extract Count": "545,54",
+      "Load Date Time": "2024/11/22",
+      "TigerGraph Count": 16000,
+      "Match Accuracy": "50%"
+    },
+    {
+"KibanaDDF Module": "bt-8668-csv-tgh-hed-act-brhd",
+      "Panthera Extract Name": "ed_account_branch_hold_hist",
+      "Panthera Extract Count": "545,54",
+      "Load Date Time": "2024/11/22",
+      "TigerGraph Count": 14577,
+      "Match Accuracy": "99.99%"
+    },
+	{
+      "KibanaDDF Module": "bt-8668-csv-tgh-hed-act-brhd",
+      "Panthera Extract Name": "ed_account_branch_hold_hist",
+      "Panthera Extract Count": "545,54",
+      "Load Date Time": "2024/11/22",
+      "TigerGraph Count": 15000,
+      "Match Accuracy": "95%"
+    },
+    {
+"KibanaDDF Module": "bt-8668-csv-tgh-hed-act-brhd",
+      "Panthera Extract Name": "ed_account_branch_hold_hist",
+      "Panthera Extract Count": "545,54",
+      "Load Date Time": "2024/11/22",
+      "TigerGraph Count": 15000,
+      "Match Accuracy": "25%"
+    },
+    {
+"KibanaDDF Module": "bt-8668-csv-tgh-hed-act-brhd",
+      "Panthera Extract Name": "ed_account_branch_hold_hist",
+      "Panthera Extract Count": "545,54",
+      "Load Date Time": "2024/11/22",
+      "TigerGraph Count": 16000,
+      "Match Accuracy": "50%"
+    },
+    {
+"KibanaDDF Module": "bt-8668-csv-tgh-hed-act-brhd",
+      "Panthera Extract Name": "ed_account_branch_hold_hist",
+      "Panthera Extract Count": "545,54",
+      "Load Date Time": "2024/11/22",
+      "TigerGraph Count": 14577,
+      "Match Accuracy": "99.99%"
+    },
+	{
+      "KibanaDDF Module": "bt-8668-csv-tgh-hed-act-brhd",
+      "Panthera Extract Name": "ed_account_branch_hold_hist",
+      "Panthera Extract Count": "545,54",
+      "Load Date Time": "2024/11/22",
+      "TigerGraph Count": 15000,
+      "Match Accuracy": "95%"
+    },
+    {
+"KibanaDDF Module": "bt-8668-csv-tgh-hed-act-brhd",
+      "Panthera Extract Name": "ed_account_branch_hold_hist",
+      "Panthera Extract Count": "545,54",
+      "Load Date Time": "2024/11/22",
+      "TigerGraph Count": 15000,
+      "Match Accuracy": "25%"
+    },
+    {
+"KibanaDDF Module": "bt-8668-csv-tgh-hed-act-brhd",
+      "Panthera Extract Name": "ed_account_branch_hold_hist",
+      "Panthera Extract Count": "545,54",
+      "Load Date Time": "2024/11/22",
+      "TigerGraph Count": 16000,
+      "Match Accuracy": "50%"
+    },
+    {
+"KibanaDDF Module": "bt-8668-csv-tgh-hed-act-brhd",
+      "Panthera Extract Name": "ed_account_branch_hold_hist",
+      "Panthera Extract Count": "545,54",
+      "Load Date Time": "2024/11/22",
+      "TigerGraph Count": 14577,
+      "Match Accuracy": "99.99%"
+    },
+	{
+      "KibanaDDF Module": "bt-8668-csv-tgh-hed-act-brhd",
+      "Panthera Extract Name": "ed_account_branch_hold_hist",
+      "Panthera Extract Count": "545,54",
+      "Load Date Time": "2024/11/22",
+      "TigerGraph Count": 15000,
+      "Match Accuracy": "95%"
+    },
+    {
+"KibanaDDF Module": "bt-8668-csv-tgh-hed-act-brhd",
+      "Panthera Extract Name": "ed_account_branch_hold_hist",
+      "Panthera Extract Count": "545,54",
+      "Load Date Time": "2024/11/22",
+      "TigerGraph Count": 15000,
+      "Match Accuracy": "25%"
+    },
+    {
+"KibanaDDF Module": "bt-8668-csv-tgh-hed-act-brhd",
+      "Panthera Extract Name": "ed_account_branch_hold_hist",
+      "Panthera Extract Count": "545,54",
+      "Load Date Time": "2024/11/22",
+      "TigerGraph Count": 16000,
+      "Match Accuracy": "100%"
+    },
+    {
+"KibanaDDF Module": "bt-8668-csv-tgh-hed-act-brhd",
+      "Panthera Extract Name": "ed_account_branch_hold_hist",
+      "Panthera Extract Count": "545,54",
+      "Load Date Time": "2024/11/22",
+      "TigerGraph Count": 14577,
+      "Match Accuracy": "99.99%"
+    },
+	{
+      "KibanaDDF Module": "bt-8668-csv-tgh-hed-act-brhd",
+      "Panthera Extract Name": "ed_account_branch_hold_hist",
+      "Panthera Extract Count": "545,54",
+      "Load Date Time": "2024/11/22",
+      "TigerGraph Count": 15000,
+      "Match Accuracy": "95%"
+    },
+    {
+"KibanaDDF Module": "bt-8668-csv-tgh-hed-act-brhd",
+      "Panthera Extract Name": "ed_account_branch_hold_hist",
+      "Panthera Extract Count": "545,54",
+      "Load Date Time": "2024/11/22",
+      "TigerGraph Count": 15000,
+      "Match Accuracy": "25%"
+    },
+    {
+"KibanaDDF Module": "bt-8668-csv-tgh-hed-act-brhd",
+      "Panthera Extract Name": "ed_account_branch_hold_hist",
+      "Panthera Extract Count": "545,54",
+      "Load Date Time": "2024/11/22",
+      "TigerGraph Count": 16000,
+      "Match Accuracy": "100%"
+    },
+    {
+"KibanaDDF Module": "bt-8668-csv-tgh-hed-act-brhd",
+      "Panthera Extract Name": "ed_account_branch_hold_hist",
+      "Panthera Extract Count": "545,54",
+      "Load Date Time": "2024/11/22",
+      "TigerGraph Count": 14577,
+      "Match Accuracy": "99.99%"
+    },
+	{
+      "KibanaDDF Module": "bt-8668-csv-tgh-hed-act-brhd",
+      "Panthera Extract Name": "ed_account_branch_hold_hist",
+      "Panthera Extract Count": "545,54",
+      "Load Date Time": "2024/11/22",
+      "TigerGraph Count": 15000,
+      "Match Accuracy": "95%"
+    },
+    {
+"KibanaDDF Module": "bt-8668-csv-tgh-hed-act-brhd",
+      "Panthera Extract Name": "ed_account_branch_hold_hist",
+      "Panthera Extract Count": "545,54",
+      "Load Date Time": "2024/11/22",
+      "TigerGraph Count": 15000,
+      "Match Accuracy": "25%"
+    },
+    {
+"KibanaDDF Module": "bt-8668-csv-tgh-hed-act-brhd",
+      "Panthera Extract Name": "ed_account_branch_hold_hist",
+      "Panthera Extract Count": "545,54",
+      "Load Date Time": "2024/11/22",
+      "TigerGraph Count": 16000,
+      "Match Accuracy": "100%"
+    },
+    {
+"KibanaDDF Module": "bt-8668-csv-tgh-hed-act-brhd",
+      "Panthera Extract Name": "ed_account_branch_hold_hist",
+      "Panthera Extract Count": "545,54",
+      "Load Date Time": "2024/11/22",
+      "TigerGraph Count": 14577,
+      "Match Accuracy": "99.99%"
+    },
+	{
+      "KibanaDDF Module": "bt-8668-csv-tgh-hed-act-brhd",
+      "Panthera Extract Name": "ed_account_branch_hold_hist",
+      "Panthera Extract Count": "545,54",
+      "Load Date Time": "2024/11/22",
+      "TigerGraph Count": 15000,
+      "Match Accuracy": "95%"
+    },
+    {
+"KibanaDDF Module": "bt-8668-csv-tgh-hed-act-brhd",
+      "Panthera Extract Name": "ed_account_branch_hold_hist",
+      "Panthera Extract Count": "545,54",
+      "Load Date Time": "2024/11/22",
+      "TigerGraph Count": 15000,
+      "Match Accuracy": "100%"
+    },
+    {
+"KibanaDDF Module": "bt-8668-csv-tgh-hed-act-brhd",
+      "Panthera Extract Name": "ed_account_branch_hold_hist",
+      "Panthera Extract Count": "545,54",
+      "Load Date Time": "2024/11/22",
+      "TigerGraph Count": 16000,
+      "Match Accuracy": "50%"
+    },
+    {
+"KibanaDDF Module": "bt-8668-csv-tgh-hed-act-brhd",
+      "Panthera Extract Name": "ed_account_branch_hold_hist",
+      "Panthera Extract Count": "545,54",
+      "Load Date Time": "2024/11/22",
+      "TigerGraph Count": 14577,
+      "Match Accuracy": "99.99%"
+    },
+	{
+      "KibanaDDF Module": "bt-8668-csv-tgh-hed-act-brhd",
+      "Panthera Extract Name": "ed_account_branch_hold_hist",
+      "Panthera Extract Count": "545,54",
+      "Load Date Time": "2024/11/22",
+      "TigerGraph Count": 15000,
+      "Match Accuracy": "95%"
+    },
+    {
+"KibanaDDF Module": "bt-8668-csv-tgh-hed-act-brhd",
+      "Panthera Extract Name": "ed_account_branch_hold_hist",
+      "Panthera Extract Count": "545,54",
+      "Load Date Time": "2024/11/22",
+      "TigerGraph Count": 15000,
+      "Match Accuracy": "100%"
+    },
+    {
+"KibanaDDF Module": "bt-8668-csv-tgh-hed-act-brhd",
+      "Panthera Extract Name": "ed_account_branch_hold_hist",
+      "Panthera Extract Count": "545,54",
+      "Load Date Time": "2024/11/22",
+      "TigerGraph Count": 16000,
+      "Match Accuracy": "50%"
+    },
+    {
+"KibanaDDF Module": "bt-8668-csv-tgh-hed-act-brhd",
+      "Panthera Extract Name": "ed_account_branch_hold_hist",
+      "Panthera Extract Count": "545,54",
+      "Load Date Time": "2024/11/22",
+      "TigerGraph Count": 14577,
+      "Match Accuracy": "99.99%"
+    },
+	{
+      "KibanaDDF Module": "bt-8668-csv-tgh-hed-act-brhd",
+      "Panthera Extract Name": "ed_account_branch_hold_hist",
+      "Panthera Extract Count": "545,54",
+      "Load Date Time": "2024/11/22",
+      "TigerGraph Count": 15000,
+      "Match Accuracy": "100%"
+    },
+    {
+"KibanaDDF Module": "bt-8668-csv-tgh-hed-act-brhd",
+      "Panthera Extract Name": "ed_account_branch_hold_hist",
+      "Panthera Extract Count": "545,54",
+      "Load Date Time": "2024/11/22",
+      "TigerGraph Count": 15000,
+      "Match Accuracy": "100%"
+    },
+    {
+"KibanaDDF Module": "bt-8668-csv-tgh-hed-act-brhd",
+      "Panthera Extract Name": "ed_account_branch_hold_hist",
+      "Panthera Extract Count": "545,54",
+      "Load Date Time": "2024/11/22",
+      "TigerGraph Count": 16000,
+      "Match Accuracy": "50%"
+    },
+    {
+"KibanaDDF Module": "bt-8668-csv-tgh-hed-act-brhd",
+      "Panthera Extract Name": "ed_account_branch_hold_hist",
+      "Panthera Extract Count": "545,54",
+      "Load Date Time": "2024/11/22",
+      "TigerGraph Count": 14577,
+      "Match Accuracy": "99.99%"
     }
   ],
   "summary": {
