@@ -181,6 +181,19 @@ th, td {
             overflow-x: auto;
             margin-right: 20px;
         }
+		 .flatpickr-confirm {
+            background-color: #007bff !important;
+            color: white !important;
+            font-weight: bold !important;
+            border-radius: 4px !important;
+            padding: 10px 20px !important;
+            margin: 10px !important;
+            transition: background-color 0.3s ease !important;
+        }
+
+        .flatpickr-confirm:hover {
+            background-color: #0056b3 !important;
+        }
     </style>
 </head>
 <body>
@@ -225,14 +238,29 @@ th, td {
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/flatpickr.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
-    
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/plugins/confirmDate/confirmDate.js"></script>
     <script>
         // Initialize datetime pickers
         document.querySelectorAll('.datetime-picker').forEach(element => {
             flatpickr(element, {
                 enableTime: true,
                 dateFormat: "Y-m-d H:i",
-                time_24hr: true
+                time_24hr: true,
+				             clickOpens: true, // Ensure calendar opens when clicking input
+                allowInput: true, // Allow manual input
+                enableSeconds: false, // Optional: disable seconds for simplicity
+                onClose: [function(selectedDates, dateStr, instance) {
+                    // Optional: You can add custom logic here when date is selected
+                    instance.input.value = dateStr;
+                }],
+                // Add OK/Cancel buttons
+                plugins: [
+                    new confirmDatePlugin({
+                        confirmText: "OK",
+                        showAlways: false, // Only show buttons when a date is selected
+                        theme: "light" // Optional: choose a theme
+                    })
+                ]
             });
         });
 
