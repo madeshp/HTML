@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Microsoft OIDC Auto Login with PKCE</title>
+</head>
+<body>
+    <h2>Authenticating...</h2>
+    <div id="user-info"></div>
+
+    <script>
+        const clientId = "YOUR_CLIENT_ID";
+        const tenantId = "YOUR_TENANT_ID";
+        const redirectUri = encodeURIComponent("http://localhost:3000/callback");
+        const scope = "openid profile email";
+        const authEndpoint = `https://login.microsoftonline.com/${tenantId}/oauth2/v2.0/authorize`;
+        const tokenEndpoint = `https://login.microsoftonline.com/${tenantId}/oauth2/v2.0/token`;
+
+        // PKCE Helpers: Generate Code Verifier and Code Challenge
+        function generateRandomString(length) {
+            const charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~';
+            let result = '';
+            for (let i = 0; i < length; i++) {
+                result += charset.charAt(Math.floor(Math.random() * charset.length));
+            }
+            return result;
+        }
+
+        async function sha256(plain) {
+            const encoder = new TextEncoder();
+            const data = encoder.encode(plain);
+            const hash = await crypto.subtle.digest('SHA-256', data);
+            return btoa(String.fromCharCode(...new Uint8Array(hash)))
+                .replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_');
+        }
+
+        async function createPKCE() {
+            const codeVerifier = generateRandomString(64);
+            const codeChallenge = await sha256(codeVerifier);
+            localStorage.setItem("code_verifier", codeVerifier);
+            return codeChallenge;
+        }
+
+        // Redirect to Microsoft Login with PKCE
+        async function redirectToLogin() {
+            const codeChallenge = await createPKCE();
+            const state = generateRandomString(16);
+
+            const authUrl = `${authEndpoint}?client_id=${clientId}&response_type=code&redirect_uri=${redirectUri}&scope=${scope}&code_challenge=${codeChallenge}&code_challenge_method=S256&state=${state}`;
+
+            window.location.href = authUrl;
+        }
+
+        // Handle the Callback
+        async function handleCallback() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const code = urlParams.get("code");
+            const state = urlParams.get("state");
+
+            if (code) {
+                console.log("Authorization Code:", code);
+
+                const codeVerifier = localStorage.getItem("code_verifier");
+                localStorage.removeItem("code_verifier");
+
+                // Exchange code for tokens with PKCE (no client_secret needed)
+                const params = new URLSearchParams({
+                    client_id: clientId,
+                    code: code,
+                    redirect_uri: "http://localhost:3000/callback",
+                    grant_type: "authorization_code",
+                    code_verifier: codeVerifier,
+                });
+
+                fetch(tokenEndpoint, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                    body: params,
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log("Access Token:", data.access_token);
+
+                        // Decode JWT payload (basic way)
+                        const payload = JSON.parse(atob(data.id_token.split('.')[1]));
+                        console.log("User Info:", payload);
+
+                        document.getElementById("user-info").innerHTML = `
+                            <h3>Welcome, ${payload.name}</h3>
+                            <p>Email: ${payload.email}</p>
+                        `;
+                    })
+                    .catch(err => console.error("Error fetching token:", err));
+            } else {
+                redirectToLogin();  // If no code, force login
+            }
+        }
+
+        // Auto-login or handle callback on page load
+        window.onload = handleCallback;
+    </script>
+</body>
+</html>

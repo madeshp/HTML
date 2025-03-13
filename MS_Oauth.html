@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Microsoft OIDC Auto Login</title>
+</head>
+<body>
+    <h2>Authenticating...</h2>
+    <div id="user-info"></div>
+
+    <script>
+        const clientId = "YOUR_CLIENT_ID";
+        const tenantId = "YOUR_TENANT_ID";
+        const redirectUri = encodeURIComponent("http://localhost:3000/callback");
+        const scope = "openid profile email";
+
+        function redirectToLogin() {
+            const authUrl = `https://login.microsoftonline.com/${tenantId}/oauth2/v2.0/authorize?client_id=${clientId}&response_type=code&redirect_uri=${redirectUri}&scope=${scope}&response_mode=query&state=12345`;
+            window.location.href = authUrl;
+        }
+
+        function handleCallback() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const code = urlParams.get("code");
+
+            if (code) {
+                console.log("Authorization Code:", code);
+
+                // Exchange code for token
+                const tokenUrl = `https://login.microsoftonline.com/${tenantId}/oauth2/v2.0/token`;
+                const params = new URLSearchParams({
+                    client_id: clientId,
+                    code: code,
+                    redirect_uri: "http://localhost:3000/callback",
+                    grant_type: "authorization_code",
+                    client_secret: "YOUR_CLIENT_SECRET", // Not safe on frontend!
+                });
+
+                fetch(tokenUrl, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                    body: params,
+                })
+                    .then((res) => res.json())
+                    .then((data) => {
+                        console.log("Access Token:", data.access_token);
+
+                        // Decode JWT payload (basic way)
+                        const payload = JSON.parse(atob(data.id_token.split('.')[1]));
+                        console.log("User Info:", payload);
+
+                        document.getElementById("user-info").innerHTML = `
+                            <h3>Welcome, ${payload.name}</h3>
+                            <p>Email: ${payload.email}</p>
+                        `;
+                    })
+                    .catch(err => console.error("Error fetching token:", err));
+            } else {
+                redirectToLogin();  // If no code, force login
+            }
+        }
+
+        // Automatically handle login or callback
+        window.onload = handleCallback;
+    </script>
