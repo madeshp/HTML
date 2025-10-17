@@ -1,0 +1,316 @@
+# BART Alert Management System
+## Business Overview & User Guide
+
+---
+
+## Executive Summary
+
+The BART (Batch Alert Review Tool) Alert Management System is a comprehensive fraud detection and monitoring platform that helps our organization identify and respond to potential financial crimes. This system automatically creates and manages alerts based on various risk categories, enabling our team to efficiently review and take action on suspicious activities.
+
+---
+
+## What Problem Does BART Solve?
+
+**Challenge:** Financial institutions must monitor thousands of transactions and entities daily to identify potential fraud, money laundering, and other financial crimes. Manually tracking all suspicious activities is impossible and time-consuming.
+
+**Solution:** BART automates the alert creation process by:
+- Monitoring high-risk entities and categories in real-time
+- Creating alerts automatically when suspicious patterns are detected
+- Providing a centralized dashboard for reviewing and managing alerts
+- Ensuring no suspicious activity goes unnoticed
+
+---
+
+## How BART Works: A Step-by-Step Journey
+
+### **Step 1: User Access**
+🔐 **What Happens:** A team member logs into the BART User Interface (UI)
+
+**Business Value:** Secure, role-based access ensures only authorized personnel can view sensitive alert information.
+
+---
+
+### **Step 2: Manual Alert Creation**
+📤 **What Happens:** Users can upload custom categories or individual entities from the hotlist queue
+
+**Who Does This:** Fraud analysts, compliance officers, or risk management team members
+
+**Example Scenario:** 
+- A compliance officer receives intelligence about a new fraud ring
+- They upload the associated entity names into BART
+- The system immediately begins monitoring these entities
+
+**Categories Supported:**
+1. **External FI** - Suspicious activities reported by other financial institutions
+2. **NCFTA External** - Threats identified by the National Cyber-Forensics & Training Alliance
+3. **Early Warning** - Preventive alerts for potential risks before they escalate
+4. **Law Enforcement** - Entities flagged by law enforcement agencies
+5. **Internal High Risk** - Customers identified internally as high-risk
+6. **High Risk Open Account** - Newly opened accounts showing suspicious patterns
+
+---
+
+### **Step 3: System Processing**
+⚙️ **What Happens:** The BART UI communicates with backend services hosted on Azure AKS (cloud infrastructure)
+
+**Technical Component:** Service Layer (API)
+
+**Business Translation:** Think of this as the "brain" of BART. When you submit a request, this layer:
+- Validates your input
+- Securely communicates with the database
+- Ensures data integrity
+- Returns results quickly
+
+**Why Azure AKS?**
+- **Scalability:** Can handle thousands of requests simultaneously
+- **Reliability:** 99.9% uptime ensures system availability
+- **Security:** Enterprise-grade security protecting sensitive financial data
+
+---
+
+### **Step 4: Alert Generation**
+🎯 **What Happens:** The system queries TigerGraph (our advanced database) to create alerts
+
+**TigerGraph Database:** A powerful graph database that connects entities, transactions, and patterns
+
+**What It Does:**
+- Analyzes relationships between entities (e.g., shared addresses, linked accounts)
+- Identifies suspicious patterns across millions of data points
+- Creates alerts when risk thresholds are exceeded
+- Prevents duplicate alerts for the same issue
+
+**Example:** 
+If John Doe is uploaded as "Internal High Risk," TigerGraph will:
+- Check all his accounts and transactions
+- Identify connected entities (family members, business partners)
+- Generate an alert if suspicious activity is found
+- Avoid creating duplicate alerts if one already exists
+
+---
+
+### **Step 5: Automated Daily Monitoring**
+🤖 **What Happens:** Every day, automated scripts run in Azure AKS to check for new alerts
+
+**Why Automation Matters:**
+- **Consistency:** Never misses a day, even on weekends and holidays
+- **Efficiency:** Processes thousands of records in minutes
+- **Accuracy:** Eliminates human error in routine checks
+
+**Daily Process:**
+1. Script wakes up at scheduled time (e.g., 2:00 AM)
+2. Pulls all entities with "Pending" status from hotlist
+3. Checks TigerGraph for each entity
+4. Creates new alerts if:
+   - Entity has suspicious activity
+   - No active alert already exists for this entity
+5. Generates summary report for review
+
+**Business Value:** Your team arrives each morning with fresh, accurate alerts ready for review—no manual data pulling required.
+
+---
+
+### **Step 6: Alert Review & Action**
+👁️ **What Happens:** Users access the Alert Menu in BART UI to review and manage alerts
+
+**User Actions Available:**
+- **View All Alerts:** See complete list of pending, in-review, and closed alerts
+- **Review Details:** Click on any alert to see full context (entity info, risk score, related transactions)
+- **Update Status:**
+  - **In Review:** Mark alert when investigation begins
+  - **Closed:** Mark as closed when investigation completes (with resolution notes)
+
+**Workflow Example:**
+1. Analyst logs in Monday morning
+2. Sees 15 new alerts from weekend processing
+3. Opens first alert: "John Doe - Internal High Risk"
+4. Reviews transaction history and risk indicators
+5. Marks as "In Review" while investigating
+6. After investigation, determines it's false positive
+7. Closes alert with notes: "Verified legitimate business activity"
+
+---
+
+## System Architecture (Non-Technical Explanation)
+
+### **BART UI (User Interface)**
+🖥️ **What It Is:** The web application you interact with daily
+
+**Think of it as:** Your Microsoft Outlook for fraud alerts—easy to use, accessible from any browser
+
+---
+
+### **Azure AKS (Cloud Platform)**
+☁️ **What It Is:** Microsoft's cloud infrastructure hosting our services
+
+**Think of it as:** A super-reliable data center that never sleeps, automatically scales when busy, and is maintained by Microsoft experts
+
+**Components in Azure AKS:**
+- **Service Layer:** Handles your requests instantly
+- **Automation Scripts:** Background workers processing data 24/7
+
+---
+
+### **TigerGraph (Database)**
+🗄️ **What It Is:** Advanced database storing all entity relationships and patterns
+
+**Think of it as:** A super-smart detective that can:
+- Remember millions of connections
+- Spot patterns humans would miss
+- Answer complex questions in seconds (e.g., "Show me all accounts connected to this entity within 3 degrees")
+
+---
+
+## Key Benefits for Your Team
+
+### 1. **Time Savings**
+⏱️ **Before BART:** Analysts spent hours manually searching databases and spreadsheets
+**With BART:** Automated alerts appear instantly—focus time on investigation, not data gathering
+
+### 2. **Improved Accuracy**
+✅ **Before BART:** Risk of missing alerts due to human oversight
+**With BART:** 100% coverage—no suspicious entity goes unmonitored
+
+### 3. **Faster Response Time**
+⚡ **Before BART:** Days to identify and escalate risks
+**With BART:** Real-time alerts enable immediate action
+
+### 4. **Better Compliance**
+📋 **Before BART:** Manual tracking made audit trails difficult
+**With BART:** Complete audit trail of who reviewed what and when
+
+### 5. **Scalability**
+📈 **Before BART:** Limited by team capacity
+**With BART:** Can monitor unlimited entities without adding staff
+
+---
+
+## Common Use Cases
+
+### **Use Case 1: External Intelligence**
+**Scenario:** FBI shares list of 500 entities involved in a fraud scheme
+
+**BART Solution:**
+1. Compliance officer uploads list to "Law Enforcement" category
+2. System checks all 500 entities against our customer database
+3. Identifies 3 matches with active accounts
+4. Creates high-priority alerts immediately
+5. Team reviews and takes action within hours
+
+**Impact:** Potential fraud stopped before losses occur
+
+---
+
+### **Use Case 2: Early Warning Prevention**
+**Scenario:** Risk model flags new account with suspicious opening patterns
+
+**BART Solution:**
+1. Account automatically added to "High Risk Open Account" category
+2. Daily automation monitors all transactions
+3. Alert triggered when large cash deposit occurs within 48 hours
+4. Analyst investigates and files SAR (Suspicious Activity Report)
+
+**Impact:** Regulatory requirement met, potential money laundering detected
+
+---
+
+### **Use Case 3: Ongoing Monitoring**
+**Scenario:** Customer previously investigated and cleared but remains on watchlist
+
+**BART Solution:**
+1. Entity kept in "Internal High Risk" with closed alerts
+2. Daily automation continues monitoring
+3. New alert created if suspicious activity resumes
+4. Team immediately aware of status change
+
+**Impact:** Continuous protection without manual tracking
+
+---
+
+## Performance Metrics
+
+**System Capabilities:**
+- ⚡ **Alert Creation Time:** Less than 5 seconds per entity
+- 📊 **Daily Processing Capacity:** 10,000+ entities monitored
+- 🔄 **Automation Frequency:** Every 24 hours (configurable)
+- 💾 **Data Retention:** Full audit trail maintained indefinitely
+- 🛡️ **System Uptime:** 99.9% availability
+
+---
+
+## Security & Compliance
+
+### **Data Protection**
+- All data encrypted in transit and at rest
+- Role-based access controls
+- Complete audit logging of all user actions
+- Compliant with SOC 2, GDPR, and financial regulations
+
+### **Audit Trail**
+Every action in BART is logged:
+- Who created the alert
+- When it was created
+- Who reviewed it
+- Status changes with timestamps
+- Resolution notes
+
+---
+
+## Getting Started
+
+### **For New Users:**
+1. Request access from your manager
+2. Complete BART training (online, 30 minutes)
+3. Receive login credentials
+4. Start reviewing alerts!
+
+### **For Questions:**
+- **Technical Support:** helpdesk@company.com
+- **Training Materials:** Available on company intranet
+- **User Guide:** Comprehensive documentation in BART UI
+
+---
+
+## Future Enhancements
+
+**Coming Soon:**
+- 📱 Mobile app for on-the-go alert reviews
+- 🤖 AI-powered risk scoring
+- 📧 Automated email notifications for high-priority alerts
+- 📈 Advanced analytics dashboard
+- 🔗 Integration with additional data sources
+
+---
+
+## Frequently Asked Questions
+
+### **Q: What if I disagree with an alert?**
+**A:** You can close the alert with detailed notes explaining why it's not valid. Your decision is logged for audit purposes.
+
+### **Q: Can alerts be edited after creation?**
+**A:** Status and notes can be updated, but core alert data remains unchanged to maintain audit integrity.
+
+### **Q: What happens if the system is down?**
+**A:** Azure AKS provides 99.9% uptime. In rare outages, the automation script will catch up on all missed checks once restored.
+
+### **Q: How do I know if an alert is high priority?**
+**A:** Alerts include risk scores and category indicators. "Law Enforcement" and "External FI" are typically highest priority.
+
+### **Q: Can I export alerts for reporting?**
+**A:** Yes, BART includes export functionality for Excel, PDF, and CSV formats.
+
+---
+
+## Summary
+
+The BART Alert Management System transforms fraud detection from a manual, time-consuming process into an automated, efficient operation. By combining real-time monitoring, intelligent automation, and user-friendly interfaces, BART empowers your team to:
+
+✅ Detect suspicious activity faster  
+✅ Investigate more efficiently  
+✅ Meet compliance requirements easily  
+✅ Protect the organization more effectively  
+
+**Bottom Line:** BART lets you focus on what matters—investigating real threats—while the system handles the heavy lifting of data monitoring and alert generation.
+
+---
+
+*For additional information or assistance, please contact the BART Support Team.*
